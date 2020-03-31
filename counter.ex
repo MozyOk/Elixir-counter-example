@@ -1,6 +1,11 @@
 defmodule Counter do
   use GenServer
 
+  def start_link(state, opts) do
+    IO.puts "--- Counter.state_link(#{inspect state}, #{inspect opts}) called ---"
+    GenServer.start_link(__MODULE__, state, opts) # __MODULE__ で自身のモジュール名(Counter)を参照できる
+  end
+
   def init(state) do
     IO.puts "--- init(#{inspect state}) called ---"
     {:ok, state}
